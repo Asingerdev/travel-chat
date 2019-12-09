@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom'
+
+import NavBar from './components/NavBar'
+
+import * as ROUTES from './constants/routes'
+import firebase from 'firebase';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+
+class App extends Component {
+  state = {
+    currentUser: null
+  }
+  render() {
+    return (
+      <div className="App" >
+        <NavBar />
+        <h1>Hello user</h1>
+        <Switch>
+          <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
+          <Route exact path={ROUTES.LOGIN} render={() => <div>login</div>} />
+          <Route exact path={ROUTES.SIGN_UP} render={() => <div>register</div>} />
+          <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
