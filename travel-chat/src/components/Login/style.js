@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SignUpForm = styled.form`
+export const LoginForm = styled.form`
     width: 35%;
     margin: 60px auto;
     height: 500px;
@@ -26,7 +26,7 @@ export const SignUpForm = styled.form`
         flex-direction: column;
     }
 
-    p.login-redirect {
+      p.signup-redirect {
         align-self: center;
     }
 

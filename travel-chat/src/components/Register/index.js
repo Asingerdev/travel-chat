@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
@@ -52,13 +53,13 @@ class Register extends Component {
 
         return (
             <SignUpForm onSubmit={this.handleSubmit}>
-                <h1>Sign Up</h1>
+                <h1>Create Account</h1>
                 <p>
                     <label htmlFor="username"><PersonIcon style={{ display: "inline-block", marginBottom: "-5px", fontSize: "20px" }} />Username</label>
                     <input type="text" name="username" value={username} onChange={this.handleChange} />
                 </p>
                 <p>
-                    <label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email address</label>
+                    <label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email</label>
                     <input type="text" name="email" value={email} onChange={this.handleChange} />
                 </p>
                 <p>
@@ -66,9 +67,9 @@ class Register extends Component {
                     <input type="password" name="password" value={password} onChange={this.handleChange} />
                 </p>
                 <p>
-                    <input type='submit' value='Join' disabled={isInvalid} />
+                    <input type="submit" value="Submit" disabled={isInvalid} />
                 </p>
-                <p1>Already have an account? Login</p1>
+                <p className="signup-redirect">Already have an account?<Link to={ROUTES.LOGIN}>Log in</Link></p>
                 {error && <p>{error.message}</p>}
             </SignUpForm>
         )

@@ -2,15 +2,15 @@ import React from 'react'
 
 import * as ROUTES from '../../constants/routes'
 
-import NavLink from './style.js'
+import StyledNavLink from './style.js'
 
 const NavBar = () => {
     return (
         <div>
-            <NavLink to={ROUTES.HOME}>Home</NavLink>
-            <NavLink to={ROUTES.LOGIN}>Login</NavLink>
-            <NavLink to={ROUTES.REGISTER}>Register</NavLink>
-            <NavLink to={ROUTES.CITIES}>Cities</NavLink>
+            <StyledNavLink to={ROUTES.HOME}>Home</StyledNavLink>
+            <StyledNavLink to={ROUTES.LOGIN}>Login</StyledNavLink>
+            <StyledNavLink to={ROUTES.REGISTER}>Register</StyledNavLink>
+            <StyledNavLink to={ROUTES.CITIES}>Cities</StyledNavLink>
         </div>
     )
 }

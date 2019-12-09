@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
 import Register from './components/Register'
+import Login from './components/Login'
 
 import * as ROUTES from './constants/routes'
-import firebase from 'firebase';
+import firebase, { auth } from 'firebase';
 
 import './App.css';
 
 import './App.css';
 
-class App extends Component {
+class AppRouter extends Component {
   state = {
     currentUser: null
   }
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          user
+        });
+      }
+    });
+  }
+
+  logOutUser = () => {
+    firebase.auth().signOut()
+      .then(window.location = '/')
+  }
+
   render() {
     return (
-      <div className="App" >
-        <NavBar />
-        <h1>Hello user</h1>
-        <Switch>
-          <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
-          <Route exact path={ROUTES.LOGIN} render={() => <div>login</div>} />
-          <Route exact path={ROUTES.REGISTER} component={Register} />
-          <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
-        </Switch>
-      </div>
+      <Router>
+        <div className="App" >
+          <NavBar />
+          <h1>Hello user</h1>
+          <Switch>
+            <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
+            <Route exact path={ROUTES.LOGIN} component={Login} />
+            <Route exact path={ROUTES.REGISTER} component={Register} />
+            <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default AppRouter;
