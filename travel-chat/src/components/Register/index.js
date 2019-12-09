@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
+import { SignUpForm } from './style'
+
 class Register extends Component {
     state = {
         username: '',
@@ -46,20 +48,25 @@ class Register extends Component {
             password === ''
 
         return (
-            <div>
-                <h1>Register</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label for="username">Username</label>
+            <SignUpForm onSubmit={this.handleSubmit}>
+                <h1>Sign Up</h1>
+                <p>
+                    <label htmlFor="username">Username</label>
                     <input type="text" name="username" value={username} onChange={this.handleChange} />
-                    <label for="email">Email address</label>
+                </p>
+                <p>
+                    <label htmlFor="email">Email address</label>
                     <input type="text" name="email" value={email} onChange={this.handleChange} />
-                    <label for="password">Password</label>
-                    <input type="password" name="password" value={password} onChange={this.onChange} />
+                </p>
+                <p>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" value={password} onChange={this.handleChange} />
+                </p>
+                <p>
                     <input type='submit' value='submit' disabled={isInvalid} />
-                    {error && <p>{error.message}</p>}
-                    <p>Already have an account?</p>
-                </form>
-            </div>
+                </p>
+                {error && <p>{error.message}</p>}
+            </SignUpForm>
         )
     }
 }
