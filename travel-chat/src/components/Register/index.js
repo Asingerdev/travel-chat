@@ -3,6 +3,9 @@ import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
 import { SignUpForm } from './style'
+import PersonIcon from '@material-ui/icons/Person';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
 
 class Register extends Component {
     state = {
@@ -51,20 +54,21 @@ class Register extends Component {
             <SignUpForm onSubmit={this.handleSubmit}>
                 <h1>Sign Up</h1>
                 <p>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username"><PersonIcon style={{ display: "inline-block", marginBottom: "-5px", fontSize: "20px" }} />Username</label>
                     <input type="text" name="username" value={username} onChange={this.handleChange} />
                 </p>
                 <p>
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email address</label>
                     <input type="text" name="email" value={email} onChange={this.handleChange} />
                 </p>
                 <p>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password"><LockIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "18px", marginRight: "2px" }} />Password</label>
                     <input type="password" name="password" value={password} onChange={this.handleChange} />
                 </p>
                 <p>
-                    <input type='submit' value='submit' disabled={isInvalid} />
+                    <input type='submit' value='Join' disabled={isInvalid} />
                 </p>
+                <p1>Already have an account? Login</p1>
                 {error && <p>{error.message}</p>}
             </SignUpForm>
         )
