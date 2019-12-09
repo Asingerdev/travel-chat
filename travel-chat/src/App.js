@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
+import Register from './components/Register'
 
 import * as ROUTES from './constants/routes'
 import firebase from 'firebase';
@@ -22,7 +23,7 @@ class App extends Component {
         <Switch>
           <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
           <Route exact path={ROUTES.LOGIN} render={() => <div>login</div>} />
-          <Route exact path={ROUTES.SIGN_UP} render={() => <div>register</div>} />
+          <Route exact path={ROUTES.REGISTER} component={Register} />
           <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
         </Switch>
       </div>

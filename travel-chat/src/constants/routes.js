@@ -1,4 +1,4 @@
 export const HOME = '/home'
-export const SIGN_UP = '/signup'
+export const REGISTER = '/register'
 export const LOGIN = '/login'
 export const CITIES = '/cities'
