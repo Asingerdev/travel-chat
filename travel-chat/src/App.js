@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import NavBar from './components/NavBar'
+import Register from './components/Register'
+import Login from './components/Login'
+
+import * as ROUTES from './constants/routes'
+import { firebase, auth } from './firebase';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class AppRouter extends Component {
+  state = {
+    currentUser: null
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({
+          currentUser: {
+            displayName: authUser.displayName
+          }
+        })
+        : this.setState({ currentUser: null })
+    });
+  }
+
+  doLogOutUser = () => {
+    firebase.auth().signOut()
+      .then(window.location = '/')
+  }
+
+  render() {
+    const { currentUser } = this.state;
+    console.log(currentUser)
+    return (
+      <Router>
+        <div className="app">
+          <NavBar currentUser={currentUser} doLogOutUser={this.doLogOutUser} />
+          <main>
+            <Switch>
+              <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
+              <Route exact path={ROUTES.LOGIN} component={Login} />
+              <Route exact path={ROUTES.REGISTER} component={Register} />
+              <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
+            </Switch>
+          </main>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+export default AppRouter;
