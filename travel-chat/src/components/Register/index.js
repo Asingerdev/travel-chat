@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
-import { SignUpForm } from './style'
+import { SignUpForm, Header, FormRow, LoginText, Label, FormInput, Submit } from './style'
 import PersonIcon from '@material-ui/icons/Person';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
@@ -53,23 +53,23 @@ class Register extends Component {
 
         return (
             <SignUpForm onSubmit={this.handleSubmit}>
-                <h1>Create Account</h1>
-                <p>
-                    <label htmlFor="username"><PersonIcon style={{ display: "inline-block", marginBottom: "-5px", fontSize: "20px" }} />Username</label>
-                    <input type="text" name="username" value={username} onChange={this.handleChange} />
-                </p>
-                <p>
-                    <label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email</label>
-                    <input type="text" name="email" value={email} onChange={this.handleChange} />
-                </p>
-                <p>
-                    <label htmlFor="password"><LockIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "18px", marginRight: "2px" }} />Password</label>
-                    <input type="password" name="password" value={password} onChange={this.handleChange} />
-                </p>
-                <p>
-                    <input type="submit" value="Submit" disabled={isInvalid} />
-                </p>
-                <p className="signup-redirect">Already have an account?<Link to={ROUTES.LOGIN}>Log in</Link></p>
+                <Header>Create Account</Header>
+                <FormRow>
+                    <Label htmlFor="username"><PersonIcon style={{ display: "inline-block", marginBottom: "-5px", fontSize: "20px" }} />Username</Label>
+                    <FormInput type="text" name="username" value={username} onChange={this.handleChange} />
+                </FormRow>
+                <FormRow>
+                    <Label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email</Label>
+                    <FormInput type="text" name="email" value={email} onChange={this.handleChange} />
+                </FormRow>
+                <FormRow>
+                    <Label htmlFor="password"><LockIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "18px", marginRight: "2px" }} />Password</Label>
+                    <FormInput type="password" name="password" value={password} onChange={this.handleChange} />
+                </FormRow>
+                <FormRow>
+                    <Submit type="submit" value="Submit" disabled={isInvalid} />
+                </FormRow>
+                <LoginText className="signup-redirect">Already have an account?<Link to={ROUTES.LOGIN}>Log in</Link></LoginText>
                 {error && <p>{error.message}</p>}
             </SignUpForm>
         )

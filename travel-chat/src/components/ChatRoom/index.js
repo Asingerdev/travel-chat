@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Message from '../Message'
-import firebase from 'firebase'
+import Message from '../Message';
+import firebase from 'firebase';
+
+import { ChatWindow } from './style';
 
 class ChatRoom extends Component {
     state = {
@@ -12,7 +14,7 @@ class ChatRoom extends Component {
 
     handleChange = e =>
         this.setState({
-            message: event.target.value
+            message: e.target.value
         })
 
     handleSend = () => {
@@ -46,7 +48,7 @@ class ChatRoom extends Component {
     render() {
         const { message } = this.state;
         return (
-            <div className="chat-window">
+            <ChatWindow>
                 <div className="chat-message">
 
                 </div>
@@ -66,9 +68,9 @@ class ChatRoom extends Component {
                         enter
                 </button>
                 </div>
-            </div>
+            </ChatWindow>
         )
-
     }
-
 }
+
+export default ChatRoom;
