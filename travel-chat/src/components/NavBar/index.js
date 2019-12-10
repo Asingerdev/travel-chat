@@ -2,16 +2,25 @@ import React from 'react'
 
 import * as ROUTES from '../../constants/routes'
 
-import StyledNavLink from './style.js'
+import { StyledNav, StyledNavLink } from './style.js'
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
-        <div>
-            <StyledNavLink to={ROUTES.HOME}>Home</StyledNavLink>
-            <StyledNavLink to={ROUTES.LOGIN}>Login</StyledNavLink>
-            <StyledNavLink to={ROUTES.REGISTER}>Register</StyledNavLink>
-            <StyledNavLink to={ROUTES.CITIES}>Cities</StyledNavLink>
-        </div>
+        <StyledNav>
+            <ul>
+                <li><StyledNavLink to={ROUTES.HOME}>Home</StyledNavLink></li>
+                <li><StyledNavLink to={ROUTES.CITIES}>Cities</StyledNavLink></li>
+                {!props.currentUser &&
+                    <React.Fragment>
+                        <li><StyledNavLink to={ROUTES.LOGIN}>Login</StyledNavLink></li>
+                        <li><StyledNavLink to={ROUTES.REGISTER}>Register</StyledNavLink></li>
+                    </React.Fragment>
+                }
+                {props.currentUser &&
+                    <li><StyledNavLink onClick={props.doLogOutUser} to={ROUTES.HOME}>Logout</StyledNavLink></li>
+                }
+            </ul>
+        </StyledNav>
     )
 }
 
