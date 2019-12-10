@@ -37,15 +37,17 @@ class AppRouter extends Component {
     console.log(currentUser)
     return (
       <Router>
-        <NavBar currentUser={currentUser} doLogOutUser={this.doLogOutUser} />
-        <main>
-          <Switch>
-            <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
-            <Route exact path={ROUTES.LOGIN} component={Login} />
-            <Route exact path={ROUTES.REGISTER} component={Register} />
-            <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
-          </Switch>
-        </main>
+        <div className="app">
+          <NavBar currentUser={currentUser} doLogOutUser={this.doLogOutUser} />
+          <main>
+            <Switch>
+              <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
+              <Route exact path={ROUTES.LOGIN} component={Login} />
+              <Route exact path={ROUTES.REGISTER} component={Register} />
+              <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
+            </Switch>
+          </main>
+        </div>
       </Router>
     );
   }

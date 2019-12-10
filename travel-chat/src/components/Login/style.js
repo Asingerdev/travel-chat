@@ -60,7 +60,7 @@ export const LoginForm = styled.form`
         line-height: 40px;
         text-align: center;
         font-weight: bold;
-        background: linear-gradient(#34a5cf, #2a8ac4);
+        background: #1eb96e;
         border: 1px solid #f4ab4c;
         color: #ffffff;
         &:hover {
