@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import Message from '../Message';
 import firebase from 'firebase';
 
-import { ChatWindow } from './style';
+import { ChatWindow, ChatMessage, ChatRow, ChatInput, ChatButton } from './style';
 
 class ChatRoom extends Component {
     state = {
-        displayName: '',
         message: '',
         list: []
     }
-    chatHistory = firebase.database().ref().child('messages')
+    chatHistory = firebase.database().ref().child('thread')
+
+    componentDidMount() {
+        this.listenMessages();
+    }
 
     handleChange = e =>
         this.setState({
@@ -18,13 +21,17 @@ class ChatRoom extends Component {
         })
 
     handleSend = () => {
-        const { message, displayName } = this.state;
+        const { message } = this.state;
+        const currentUserId = firebase.auth().currentUser.uid;
+        const senderName = firebase.auth().currentUser.displayName;
         if (message) {
-            const newItem = {
-                displayName: displayName,
-                message: message
+            const newMessage = {
+                content: message,
+                timestamp: Date.now(),
+                senderID: currentUserId,
+                senderName: senderName
             }
-            this.chatHistory.push(newItem);
+            this.chatHistory.push(newMessage);
             this.setState({ message: '' });
         }
     }
@@ -35,25 +42,23 @@ class ChatRoom extends Component {
     }
 
     listenMessages() {
-        this.chatHistory
+        const messages = firebase.database().ref(`thread/`)
+        messages
             .limitToLast(10)
-            .on('value', message => {
-                this.setState({
-                    list: Object.keys(message).map((key) => {
-                        return message[key];
-                    })
-                })
-            })
+            .on('value', (snapshot) => {
+                snapshot.forEach(s => console.log(s.val().content))
+            });
     }
+
     render() {
         const { message } = this.state;
         return (
             <ChatWindow>
-                <div className="chat-message">
+                <ChatMessage>
 
-                </div>
-                <div className="chat-row">
-                    <input
+                </ChatMessage>
+                <ChatRow>
+                    <ChatInput
                         className="chat-input"
                         type="text"
                         placeholder="Send message"
@@ -61,13 +66,13 @@ class ChatRoom extends Component {
                         onChange={this.handleChange}
                         onKeyPress={this.handleKeyPress}
                     />
-                    <button
+                    <ChatButton
                         className="chat-button"
                         onClick={this.handleSend}
                     >
                         enter
-                </button>
-                </div>
+                </ChatButton>
+                </ChatRow>
             </ChatWindow>
         )
     }

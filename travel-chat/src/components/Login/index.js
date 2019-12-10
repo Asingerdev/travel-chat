@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
-import { LoginForm } from './style'
+import { LoginForm, Header, FormRow, SignUpText, Label, FormInput, Submit } from './style'
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 
@@ -43,20 +43,20 @@ class Login extends Component {
 
         return (
             <LoginForm onSubmit={this.handleSubmit}>
-                <h1>Login</h1>
+                <Header>Login</Header>
                 {error && <p className="error-message">{error.message}</p>}
-                <p>
-                    <label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email</label>
-                    <input type="text" name="email" value={email} placeholder="Email" onChange={this.handleChange} />
-                </p>
-                <p>
-                    <label htmlFor="password"><LockIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "18px", marginRight: "2px" }} />Password</label>
-                    <input type="password" name="password" placeholder="password" value={password} onChange={this.handleChange} />
-                </p>
-                <p>
-                    <input type="submit" value="Log In" disabled={isInvalid} />
-                </p>
-                <p className="login-redirect">Don't have an account yet? <Link to={ROUTES.REGISTER}>Register here</Link></p>
+                <FormRow>
+                    <Label htmlFor="email"><EmailIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "16px", marginRight: "3px" }} />Email</Label>
+                    <FormInput type="text" name="email" value={email} placeholder="Email" onChange={this.handleChange} />
+                </FormRow>
+                <FormRow>
+                    <Label htmlFor="password"><LockIcon style={{ display: "inline-block", marginBottom: "-4px", fontSize: "18px", marginRight: "2px" }} />Password</Label>
+                    <FormInput type="password" name="password" placeholder="password" value={password} onChange={this.handleChange} />
+                </FormRow>
+                <FormRow>
+                    <Submit type="submit" value="Log In" disabled={isInvalid} />
+                </FormRow>
+                <SignUpText className="login-redirect">Don't have an account yet? <Link to={ROUTES.REGISTER}>Register here</Link></SignUpText>
                 {error && <p>{error.message}</p>}
             </LoginForm>
         )

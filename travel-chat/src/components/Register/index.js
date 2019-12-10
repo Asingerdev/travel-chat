@@ -32,6 +32,9 @@ class Register extends Component {
                 user
                     .updateProfile({ displayName: username })
                     .then(() => {
+                        this.writeUserData();
+                    })
+                    .then(() => {
                         this.props.history.push('/');
                     })
                     .catch(error => {
@@ -41,6 +44,18 @@ class Register extends Component {
             .catch(error => {
                 this.setState({ error });
             });
+    }
+
+    writeUserData = () => {
+        const { email, username } = this.state;
+        const userId = firebase.auth().currentUser.uid;
+        firebase
+            .database()
+            .ref(`users/${userId}`)
+            .set({
+                username,
+                email
+            })
     }
 
     render() {
