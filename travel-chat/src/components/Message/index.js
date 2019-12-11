@@ -4,10 +4,10 @@ import { StyledMessage } from './style'
 const Message = (props) => {
     return (
         <StyledMessage>
-            <span className="author">
-                {props.message.displayName}:
+            <span>
+                {props.message.senderName}:
             </span>
-            {props.message.message}
+            {props.message.content}
         </StyledMessage>
     )
 }

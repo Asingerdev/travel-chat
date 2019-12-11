@@ -12,6 +12,7 @@ const StyledNav = styled.nav`
     overflow: hidden;
     width: 100%;
     height: ${navBarHeight};
+    background-color: black;
 
 
     ul {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Message from '../Message';
 import firebase from 'firebase';
 
-import { ChatWindow, ChatMessage, ChatRow, ChatInput, ChatButton } from './style';
+import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory } from './style';
 
 class ChatRoom extends Component {
     state = {
@@ -46,34 +46,57 @@ class ChatRoom extends Component {
         messages
             .limitToLast(10)
             .on('value', (snapshot) => {
-                snapshot.forEach(s => console.log(s.val().content))
+                this.setState({
+                    list: Object.values(snapshot.val())
+                })
             });
     }
 
     render() {
         const { message } = this.state;
         return (
-            <ChatWindow>
-                <ChatMessage>
+            <ChatContainer>
+                <SideBar>
+                    <UserList>
+                        <User>
+                            <UserAbout>
+                                Greg Mike
+                            </UserAbout>
+                        </User>
+                    </UserList>
+                </SideBar>
+                <ChatWindow>
+                    <ChatHeader>
+                        <ChatAbout>Spain Chatroom</ChatAbout>
+                    </ChatHeader>
+                    <ChatHistory>
+                        {this.state.list.map((item, index) =>
+                            <Message key={index} message={item} />
+                        )}
+                    </ChatHistory>
+                </ChatWindow>
+            </ChatContainer>
+            // <ChatWindow>
+            //     <ChatMessage>
 
-                </ChatMessage>
-                <ChatRow>
-                    <ChatInput
-                        className="chat-input"
-                        type="text"
-                        placeholder="Send message"
-                        value={message}
-                        onChange={this.handleChange}
-                        onKeyPress={this.handleKeyPress}
-                    />
-                    <ChatButton
-                        className="chat-button"
-                        onClick={this.handleSend}
-                    >
-                        enter
-                </ChatButton>
-                </ChatRow>
-            </ChatWindow>
+            //     </ChatMessage>
+            //     <ChatRow>
+            //         <ChatInput
+            //             className="chat-input"
+            //             type="text"
+            //             placeholder="Send message"
+            //             value={message}
+            //             onChange={this.handleChange}
+            //             onKeyPress={this.handleKeyPress}
+            //         />
+            //         <ChatButton
+            //             className="chat-button"
+            //             onClick={this.handleSend}
+            //         >
+            //             enter
+            //         </ChatButton>
+            //     </ChatRow>
+            // </ChatWindow>
         )
     }
 }
