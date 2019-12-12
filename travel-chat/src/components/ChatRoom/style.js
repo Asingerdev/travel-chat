@@ -9,7 +9,7 @@ const ChatContainer = styled.div`
     color: white;
     height: 800px;
     border-radius: 5px;
-    border: 5px solid blue;
+    border: 3px solid lightblue;
 `
 
 const SideBar = styled.div`
@@ -55,57 +55,41 @@ const ChatHistory = styled.div`
     padding: 30px 30px 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
-    height: 650px;
+    height: 600px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    background-color: white;
 `
 
+const ChatRow = styled.div`
+    padding: 20px;
+    width: 100%;
+`
 
+const ChatInput = styled.textarea`
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+`
 
-/* // const ChatWindow = styled.div`
-//     display: flex;
-//     flex-wrap: nowrap;
-//     flex-direction: column;
-//     width: 100%;
-// `
-
-// const ChatMessage = styled.div`
-//     width: 100%;
-//     padding: 0 20px;
-// `
-
-// const ChatRow = styled.div`
-//     display: flex;
-//     flex-wrap: nowrap;
-//     width: 100%;
-//     padding: 20px;
-// `
-
-// const ChatInput = styled.input`
-//     width: 100%;
-//     padding: 15px 20px;
-//     border-radius: 5px 0 0 5px;
-//     border: 1px solid #ddd;
-//     box-sizing: border-box;
-//     outline: 0;
-//     &:focus {
-//     background-color: rgba(245, 243, 243, 0.5);
-//     }
-// `
-
-// const ChatButton = styled.button`
-//     padding: 0 30px;
-//     background-color: #000;
-//     color: #fff;
-//     border: 0;
-//     border-radius: 0 5px 5px 0;
-//     outline: 0;
-//     cursor: pointer;
-//     &:hover {
-//     background-color: rgba(0, 0, 0, .8);
-//     }
-// ` */
+const ChatButton = styled.button`
+    padding: 0 30px;
+    color: #94C2ED;
+    background-color: #F2F5F8;
+    font-size: 1em;
+    text-transform: uppercase;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+        color: darken(#94C2ED, 8%);
+    }
+`
 
 export {
     ChatContainer,
@@ -116,5 +100,8 @@ export {
     ChatWindow,
     ChatHeader,
     ChatAbout,
-    ChatHistory
+    ChatHistory,
+    ChatRow,
+    ChatInput,
+    ChatButton
 }

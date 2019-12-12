@@ -1,4 +1,4 @@
 export const HOME = '/home'
 export const REGISTER = '/register'
 export const LOGIN = '/login'
-export const CHATROOM = '/chatroom'
+export const CITIES = '/cities'

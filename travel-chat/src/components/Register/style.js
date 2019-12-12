@@ -5,7 +5,7 @@ const SignUpForm = styled.form`
     margin: 60px auto;
     height: 500px;
     padding: 10px;
-    margin-top: 64px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     border-radius: 8px;

@@ -9,7 +9,7 @@ const NavBar = (props) => {
         <StyledNav>
             <ul>
                 <li><StyledNavLink to={ROUTES.HOME}>Home</StyledNavLink></li>
-                <li><StyledNavLink to={ROUTES.CHATROOM}>Chatroom</StyledNavLink></li>
+                <li><StyledNavLink to={ROUTES.CITIES}>Cities</StyledNavLink></li>
                 {!props.currentUser &&
                     <React.Fragment>
                         <li><StyledNavLink to={ROUTES.LOGIN}>Login</StyledNavLink></li>

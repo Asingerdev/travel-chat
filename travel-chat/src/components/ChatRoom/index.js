@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Message from '../Message';
 import firebase from 'firebase';
 
-import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory } from './style';
+import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory, ChatRow, ChatInput, ChatButton } from './style';
 
 class ChatRoom extends Component {
     state = {
@@ -74,29 +74,23 @@ class ChatRoom extends Component {
                             <Message key={index} message={item} />
                         )}
                     </ChatHistory>
+                    <ChatRow>
+                        <ChatInput
+                            type="text"
+                            placeholder="Type your message"
+                            value={message}
+                            onChange={this.handleChange}
+                            onKeyPress={this.handleKeyPress}
+                        />
+                        <ChatButton
+                            className="chat-button"
+                            onClick={this.handleSend}
+                        >
+                            Send
+                    </ChatButton>
+                    </ChatRow>
                 </ChatWindow>
             </ChatContainer>
-            // <ChatWindow>
-            //     <ChatMessage>
-
-            //     </ChatMessage>
-            //     <ChatRow>
-            //         <ChatInput
-            //             className="chat-input"
-            //             type="text"
-            //             placeholder="Send message"
-            //             value={message}
-            //             onChange={this.handleChange}
-            //             onKeyPress={this.handleKeyPress}
-            //         />
-            //         <ChatButton
-            //             className="chat-button"
-            //             onClick={this.handleSend}
-            //         >
-            //             enter
-            //         </ChatButton>
-            //     </ChatRow>
-            // </ChatWindow>
         )
     }
 }
