@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Avatar } from '@material-ui/core';
 
 const ChatContainer = styled.div`
     display: flex;
@@ -29,6 +30,8 @@ const User = styled.li`
 
 const UserAbout = styled.div`
     margin-top: 8px;
+    float: left;
+    padding-left: 5px;
 `
 
 const ChatWindow = styled.div`
@@ -77,18 +80,8 @@ const ChatInput = styled.textarea`
     resize: none;
 `
 
-const ChatButton = styled.button`
-    padding: 0 30px;
-    color: #94C2ED;
-    background-color: #F2F5F8;
-    font-size: 1em;
-    text-transform: uppercase;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-        color: darken(#94C2ED, 8%);
-    }
+const UserAvatar = styled(Avatar)`
+    float: left;
 `
 
 export {
@@ -103,5 +96,5 @@ export {
     ChatHistory,
     ChatRow,
     ChatInput,
-    ChatButton
+    UserAvatar
 }

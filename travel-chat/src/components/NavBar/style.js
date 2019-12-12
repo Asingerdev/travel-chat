@@ -15,7 +15,7 @@ const StyledNav = styled.nav`
     text-align: right;
     overflow: hidden;
     width: 100%;
-    color: #4D4D4D;
+    color: #757575;
     height: ${navBarHeight};
     background-color: white;
 `
@@ -42,7 +42,7 @@ const StyledNavLink = styled(NavLink)`
     font-size: 1.2em;
     margin-right: 10px;
     &:hover {
-
+        border-bottom: 1px solid #86BB71;
     }
 `
 

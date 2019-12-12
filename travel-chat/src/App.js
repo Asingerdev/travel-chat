@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import Register from './components/Register'
 import Login from './components/Login'
 import ChatRoom from './components/ChatRoom'
+import ChatContainer from './components/ChatContainer'
 
 import * as ROUTES from './constants/routes'
 import { firebase, auth } from './firebase';
@@ -42,7 +43,7 @@ class AppRouter extends Component {
           <NavBar currentUser={currentUser} doLogOutUser={this.doLogOutUser} />
           <main>
             <Switch>
-              <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
+              <Route exact path={ROUTES.HOME} component={ChatContainer} />
               <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path={ROUTES.REGISTER} component={Register} />
               <Route exact path={ROUTES.CITIES} component={ChatRoom} />
