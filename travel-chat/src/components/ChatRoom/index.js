@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import Message from '../Message'
-import firebase from 'firebase'
+import Message from '../Message';
+import firebase from 'firebase';
+
+import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory, ChatRow, ChatInput, ChatButton } from './style';
 
 class ChatRoom extends Component {
     state = {
-        displayName: '',
         message: '',
         list: []
     }
-    chatHistory = firebase.database().ref().child('messages')
+    chatHistory = firebase.database().ref().child('thread')
+
+    componentDidMount() {
+        this.listenMessages();
+    }
 
     handleChange = e =>
         this.setState({
-            message: event.target.value
+            message: e.target.value
         })
 
     handleSend = () => {
-        const { message, displayName } = this.state;
+        const { message } = this.state;
+        const currentUserId = firebase.auth().currentUser.uid;
+        const senderName = firebase.auth().currentUser.displayName;
         if (message) {
-            const newItem = {
-                displayName: displayName,
-                message: message
+            const newMessage = {
+                content: message,
+                timestamp: Date.now(),
+                senderID: currentUserId,
+                senderName: senderName
             }
-            this.chatHistory.push(newItem);
+            this.chatHistory.push(newMessage);
             this.setState({ message: '' });
         }
     }
@@ -33,42 +42,57 @@ class ChatRoom extends Component {
     }
 
     listenMessages() {
-        this.chatHistory
+        const messages = firebase.database().ref(`thread/`)
+        messages
             .limitToLast(10)
-            .on('value', message => {
+            .on('value', (snapshot) => {
                 this.setState({
-                    list: Object.keys(message).map((key) => {
-                        return message[key];
-                    })
+                    list: Object.values(snapshot.val())
                 })
-            })
+            });
     }
+
     render() {
         const { message } = this.state;
         return (
-            <div className="chat-window">
-                <div className="chat-message">
-
-                </div>
-                <div className="chat-row">
-                    <input
-                        className="chat-input"
-                        type="text"
-                        placeholder="Send message"
-                        value={message}
-                        onChange={this.handleChange}
-                        onKeyPress={this.handleKeyPress}
-                    />
-                    <button
-                        className="chat-button"
-                        onClick={this.handleSend}
-                    >
-                        enter
-                </button>
-                </div>
-            </div>
+            <ChatContainer>
+                <SideBar>
+                    <UserList>
+                        <User>
+                            <UserAbout>
+                                Greg Mike
+                            </UserAbout>
+                        </User>
+                    </UserList>
+                </SideBar>
+                <ChatWindow>
+                    <ChatHeader>
+                        <ChatAbout>Spain Chatroom</ChatAbout>
+                    </ChatHeader>
+                    <ChatHistory>
+                        {this.state.list.map((item, index) =>
+                            <Message key={index} message={item} />
+                        )}
+                    </ChatHistory>
+                    <ChatRow>
+                        <ChatInput
+                            type="text"
+                            placeholder="Type your message"
+                            value={message}
+                            onChange={this.handleChange}
+                            onKeyPress={this.handleKeyPress}
+                        />
+                        <ChatButton
+                            className="chat-button"
+                            onClick={this.handleSend}
+                        >
+                            Send
+                    </ChatButton>
+                    </ChatRow>
+                </ChatWindow>
+            </ChatContainer>
         )
-
     }
-
 }
+
+export default ChatRoom;

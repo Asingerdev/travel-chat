@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Register from './components/Register'
 import Login from './components/Login'
+import ChatRoom from './components/ChatRoom'
 
 import * as ROUTES from './constants/routes'
 import { firebase, auth } from './firebase';
@@ -44,7 +45,7 @@ class AppRouter extends Component {
               <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
               <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path={ROUTES.REGISTER} component={Register} />
-              <Route exact path={ROUTES.CITIES} render={() => <div>cities</div>} />
+              <Route exact path={ROUTES.CITIES} render={() => <div>city</div>} />
             </Switch>
           </main>
         </div>
