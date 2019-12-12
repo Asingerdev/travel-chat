@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import Message from '../Message';
 import firebase from 'firebase';
 
-import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory, ChatRow, ChatInput, ChatButton } from './style';
+import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHeader, ChatAbout, ChatHistory, ChatRow, ChatInput, UserAvatar } from './style';
+
 
 class ChatRoom extends Component {
     state = {
         message: '',
         list: []
     }
-    chatHistory = firebase.database().ref().child('thread')
+    chatHistory = firebase.database().ref().child('messages')
 
     componentDidMount() {
         this.listenMessages();
@@ -42,7 +43,7 @@ class ChatRoom extends Component {
     }
 
     listenMessages() {
-        const messages = firebase.database().ref(`thread/`)
+        const messages = firebase.database().ref(`messages/`)
         messages
             .limitToLast(10)
             .on('value', (snapshot) => {
@@ -59,9 +60,20 @@ class ChatRoom extends Component {
                 <SideBar>
                     <UserList>
                         <User>
-                            <UserAbout>
-                                Greg Mike
-                            </UserAbout>
+                            <span>
+                                <UserAvatar alt="Todd Rundgren" src="https://piercebrwn.files.wordpress.com/2016/10/x-todd-rundgren-todd-front-2.jpg" />
+                                <UserAbout>
+                                    Greg Cool
+                                </UserAbout>
+                            </span>
+                        </User>
+                        <User>
+                            <span>
+                                <UserAvatar alt="Todd Rundgren" src="https://www.biography.com/.image/t_share/MTI0ODE2NzgxMTc1OTg1NDI2/shutterstock_141908704-200x200jpg.jpgg" />
+                                <UserAbout>
+                                    Mike Lang
+                                </UserAbout>
+                            </span>
                         </User>
                     </UserList>
                 </SideBar>
@@ -82,12 +94,6 @@ class ChatRoom extends Component {
                             onChange={this.handleChange}
                             onKeyPress={this.handleKeyPress}
                         />
-                        <ChatButton
-                            className="chat-button"
-                            onClick={this.handleSend}
-                        >
-                            Send
-                    </ChatButton>
                     </ChatRow>
                 </ChatWindow>
             </ChatContainer>
