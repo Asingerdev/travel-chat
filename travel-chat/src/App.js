@@ -45,7 +45,7 @@ class AppRouter extends Component {
               <Route exact path={ROUTES.HOME} render={() => <div>home</div>} />
               <Route exact path={ROUTES.LOGIN} component={Login} />
               <Route exact path={ROUTES.REGISTER} component={Register} />
-              <Route exact path={ROUTES.CITIES} render={() => <div>city</div>} />
+              <Route exact path={ROUTES.CITIES} component={ChatRoom} />
             </Switch>
           </main>
         </div>
