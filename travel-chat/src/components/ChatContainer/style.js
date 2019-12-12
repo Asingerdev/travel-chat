@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
+const BannerImage = styled.img`
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    margin-top: 64px;
+`
+
 const CreateChatForm = styled.form`
     width: 35%;
     margin: 80px auto;
     height: 500px;
     padding: 10px;
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
@@ -66,6 +72,7 @@ const Submit = styled.input`
 `
 
 export {
+    BannerImage,
     CreateChatForm,
     Header,
     FormRow,

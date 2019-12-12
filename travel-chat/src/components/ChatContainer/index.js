@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { firebase } from '../../firebase';
 import * as ROUTES from '../../constants/routes';
 
-import { CreateChatForm, Header, FormRow, Submit } from './style'
+import { BannerImage, CreateChatForm, Header, FormRow, Submit } from './style'
 
 class ChatContainer extends Component {
     state = {
@@ -26,12 +26,16 @@ class ChatContainer extends Component {
     }
     render() {
         return (
-            <CreateChatForm onSubmit={this.handleSubmit}>
-                <Header>Create Chatroom</Header>
-                <FormRow>
-                    <Submit type="submit" value="Submit" />
-                </FormRow>
-            </CreateChatForm>
+            <React.Fragment>
+                <BannerImage src="https://cdn.pixabay.com/photo/2016/07/22/03/27/rio-de-janeiro-1534089__480.jpg" />
+                <CreateChatForm onSubmit={this.handleSubmit}>
+                    <Header>Join Chatroom</Header>
+                    <FormRow>
+                        <Submit type="submit" value="Submit" />
+                    </FormRow>
+                </CreateChatForm>
+            </React.Fragment>
+
         )
     }
 }

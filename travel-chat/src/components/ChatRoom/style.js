@@ -26,6 +26,7 @@ const UserList = styled.ul`
 const User = styled.li`
     padding-bottom: 20px;
     list-style-type: none;
+    margin-top: 30px;
 `
 
 const UserAbout = styled.div`

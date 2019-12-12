@@ -67,6 +67,14 @@ class ChatRoom extends Component {
                                 </UserAbout>
                             </span>
                         </User>
+                        <User>
+                            <span>
+                                <UserAvatar alt="Todd Rundgren" src="https://www.biography.com/.image/t_share/MTI0ODE2NzgxMTc1OTg1NDI2/shutterstock_141908704-200x200jpg.jpgg" />
+                                <UserAbout>
+                                    Mike Lang
+                                </UserAbout>
+                            </span>
+                        </User>
                     </UserList>
                 </SideBar>
                 <ChatWindow>
