@@ -26,7 +26,9 @@ Each chatroom displays a list of active users. When a user sends a message, the 
 
 ## Next Steps
 
+- Allow users to share their location
+- Allow users to send photos and videos
 - Display list of cities with active chatrooms
-- Add message forum for topics related to travel
+- Add forum for topics related to travel and specific cities
 - Support for other languages
-- Web speech API
+- Integrate web speech API
