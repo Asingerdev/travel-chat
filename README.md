@@ -15,8 +15,18 @@ Each chatroom displays a list of active users. When a user sends a message, the 
 
 ## Technologies Used
 
-Firebase for Authentication and Storage, React, React Router, Styled Components, Material UI
+- HTML5
+- CSS3
+- JSX
+- Google Firebase for Authentication and Storage
+- React
+- React Router
+- Styled Components
+- Material UI
 
-## Future Versions
+## Next Steps
 
-Future versions of the app will feature a list of cities with active chatrooms, message forums for topics related to travel, will give admin privileges to the creator of a chatroom, and will include support for other languages. 
+- Display list of cities with active chatrooms
+- Add message forum for topics related to travel
+- Support for other languages
+- Web speech API
