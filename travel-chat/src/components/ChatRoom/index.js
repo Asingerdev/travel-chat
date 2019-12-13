@@ -8,9 +8,11 @@ import { ChatContainer, SideBar, UserList, User, UserAbout, ChatWindow, ChatHead
 class ChatRoom extends Component {
     state = {
         message: '',
-        list: []
+        messageList: [],
+        members: []
     }
     chatHistory = firebase.database().ref().child('messages')
+    chatRoom = firebase.database().ref().child('chatrooms')
 
     componentDidMount() {
         this.listenMessages();
@@ -48,13 +50,13 @@ class ChatRoom extends Component {
             .limitToLast(10)
             .on('value', (snapshot) => {
                 this.setState({
-                    list: Object.values(snapshot.val())
+                    messageList: Object.values(snapshot.val())
                 })
             });
     }
 
     render() {
-        const { message } = this.state;
+        const { message, messageList, members } = this.state;
         return (
             <ChatContainer>
                 <SideBar>
@@ -79,10 +81,10 @@ class ChatRoom extends Component {
                 </SideBar>
                 <ChatWindow>
                     <ChatHeader>
-                        <ChatAbout>Spain Chatroom</ChatAbout>
+                        <ChatAbout>Madrid</ChatAbout>
                     </ChatHeader>
                     <ChatHistory>
-                        {this.state.list.map((item, index) =>
+                        {messageList.map((item, index) =>
                             <Message key={index} message={item} />
                         )}
                     </ChatHistory>

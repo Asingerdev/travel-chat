@@ -50,7 +50,7 @@ const ChatHeader = styled.header`
 
 const ChatAbout = styled.div`
     padding-left: 10px;
-    margin-top: 6px;
+    margin-top: 5px;
     font-weight: bold;
     font-size: 1.2em;
 `
