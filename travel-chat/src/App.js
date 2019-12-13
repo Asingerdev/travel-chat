@@ -31,7 +31,7 @@ class AppRouter extends Component {
 
   doLogOutUser = () => {
     firebase.auth().signOut()
-      .then(window.location = '/')
+      .then(window.location = ROUTES.HOME)
   }
 
   render() {

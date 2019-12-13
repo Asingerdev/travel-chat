@@ -35,7 +35,7 @@ class Register extends Component {
                         this.writeUserData();
                     })
                     .then(() => {
-                        this.props.history.push('/');
+                        this.props.history.push(ROUTES.HOME);
                     })
                     .catch(error => {
                         this.setState({ error });

@@ -27,7 +27,7 @@ class Login extends Component {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(user => {
-                this.props.history.push('/');
+                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });

@@ -14,8 +14,6 @@ const CreateChatForm = styled.form`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    border: 1px solid #dadce0;
 `
 
 const Header = styled.h1`
@@ -48,7 +46,6 @@ const FormInput = styled.input`
     padding: 5px;
     font-size: 1em;
     font-family: "freight-sans-pro", sans-serif;
-    margin-bottom: 5px;
     border: 1px solid #dadce0;
     border-radius: 5px;
 `
